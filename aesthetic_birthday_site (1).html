@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday</title>
+<style>
+ body {
+   margin: 0;
+   font-family: 'Poppins', sans-serif;
+   background: linear-gradient(135deg, #fde1ff, #ffd6e8, #ffe8f5);
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+ }
+ .card {
+   background: rgba(255,255,255,0.7);
+   backdrop-filter: blur(12px);
+   border-radius: 24px;
+   padding: 40px;
+   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+   text-align: center;
+   animation: fadeIn 1.4s ease;
+   max-width: 400px;
+ }
+ h1 {
+   font-size: 2.2rem;
+   margin-bottom: 10px;
+   color: #ff4da6;
+ }
+ p {
+   font-size: 1.1rem;
+   color: #444;
+ }
+ .btn {
+   margin-top: 20px;
+   display: inline-block;
+   background: #ff4da6;
+   color: white;
+   padding: 12px 22px;
+   border-radius: 30px;
+   cursor: pointer;
+   transition: 0.3s;
+   font-weight: 600;
+ }
+ .btn:hover {
+   transform: scale(1.07);
+ }
+ @keyframes fadeIn {
+   from { opacity: 0; transform: translateY(20px);} 
+   to { opacity: 1; transform: translateY(0);} 
+ }
+ #final {
+   display: none;
+   text-align: center;
+ }
+ .big-msg {
+   font-size: 2rem;
+   color: #ff2f92;
+   font-weight: 700;
+   animation: fadeIn 1.2s ease;
+ }
+  /* Floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    color: #ff2f92;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+  }
+
+  /* Glow behind text */
+  .glow {
+    text-shadow: 0 0 18px rgba(255, 0, 120, 0.7), 0 0 38px rgba(255, 0, 120, 0.45);
+  }
+  /* Floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    color: #ff2f92;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+  }
+
+  /* Falling petals */
+  .petal {
+    position: fixed;
+    top: -20px;
+    color: #ffb7d5;
+    font-size: 20px;
+    opacity: 0.9;
+    animation: fallDown linear infinite;
+  }
+
+  @keyframes fallDown {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Glow behind text */
+  .glow {
+    text-shadow: 0 0 18px rgba(255, 0, 120, 0.7), 0 0 38px rgba(255, 0, 120, 0.45);
+  }
+
+  /* iOS style popup */
+  .card, #final {
+    border-radius: 30px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+
+  /* Typewriter effect */
+  .typewriter {
+    display: inline-block;
+    border-right: 3px solid #ff2f92;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(30), blink 0.7s infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes blink {
+    0%,100% { border-color: transparent; }
+    50% { border-color: #ff2f92; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Background music -->
+<audio autoplay loop>
+  <source src="/mnt/data/1000150032.jpg" type="audio/mpeg">
+</audio>
+
+<script>
+// Floating hearts generator
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}, 650);
+
+// Falling petals generator
+setInterval(() => {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  petal.textContent = '🌸';
+  petal.style.left = Math.random() * 100 + 'vw';
+  petal.style.animationDuration = (4 + Math.random() * 2) + 's';
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 6000);
+}, 900);
+</script>
+<script>
+// Floating hearts generator
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = '💖';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}, 700);
+</script>
+
+<div class="card" id="mainCard">
+  <h1>🎉 Happy Birthday Liza!</h1>
+  <p>Liza, you make my world softer, sweeter, and brighter. Ready for a surprise?</p>
+  <div class="btn" onclick="showFinal()">Open Surprise</div>
+</div>
+
+<div id="final">
+  <div class="big-msg glow typewriter">💖 Happy Birthday, Liza 💖</div>
+  <p style="margin-top:10px;color:#444;">Wishing you joy, smiles, and all the happiness you deserve.</p>
+</div>
+
+<script>
+function showFinal(){
+  document.getElementById("mainCard").style.display = "none";
+  document.getElementById("final").style.display = "block";
+}
+</script>
+
+</body>
+</html>
