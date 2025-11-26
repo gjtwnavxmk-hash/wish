@@ -46,33 +46,70 @@ button{
   margin-top:20px;
   display:none;
 }
+#cakeContainer{
+  margin-top:30px;
+  display:none;
+  position:relative;
+  width:200px;
+  height:200px;
+  margin-left:auto;
+  margin-right:auto;
+}
 #cakeEmoji{
   font-size:150px;
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
   cursor:pointer;
-  display:none;
   user-select:none;
 }
-#loveLetter, #finalText{
+#cakeOverlay{
+  position:absolute;
+  top:0; left:0;
+  width:0;
+  height:100%;
+  background:#fff5f5;
+  border-radius:0 100px 100px 0;
+  pointer-events:none;
+}
+#loveLetter, #finalText, #friendNote{
   font-size:20px;
   margin-top:20px;
   color:#d00065;
   display:none;
+}
+.heart{
+  position:fixed;
+  color:#ff4d8d;
+  font-size:20px;
+  animation:floatHeart 3s linear forwards;
+  pointer-events:none;
+}
+@keyframes floatHeart{
+  0% {transform:translateY(0); opacity:1;}
+  100% {transform:translateY(-200px); opacity:0;}
 }
 </style>
 </head>
 <body>
 
 <div class="header">For Liza 💖</div>
-<div id="birthdayMsg"> Happy Birthday Liza! 🫶🏻🎉</div>
+<div id="birthdayMsg">🎉 Happy Birthday Liza! 🎉</div>
 <button id="miniSurpriseBtn">Mini Surprise 🎁</button>
-<div id="cakeEmoji">🎂</div>
+
+<div id="cakeContainer">
+  <div id="cakeEmoji">🎂</div>
+  <div id="cakeOverlay"></div>
+</div>
+
 <div id="loveLetter"></div>
 <div id="finalText"></div>
+<div id="friendNote"></div>
 
 <script>
-// Sakura petals falling
+// Sakura petals
 function createPetal(){
-  const petal = document.createElement('div');
+  const petal=document.createElement('div');
   petal.className='petals';
   petal.innerText='🌸';
   petal.style.left=Math.random()*100+'vw';
@@ -81,96 +118,91 @@ function createPetal(){
   petal.style.opacity=Math.random()*0.7+0.3;
   document.body.appendChild(petal);
   const duration = 4000 + Math.random()*4000;
-  let start = null;
+  let start=null;
   function animate(timestamp){
     if(!start) start=timestamp;
     const progress=timestamp-start;
     const pct=progress/duration;
-    petal.style.top = (-5 + pct*110)+'vh';
-    petal.style.transform = 'rotate('+ (pct*360) +'deg)';
+    petal.style.top=(-5 + pct*110)+'vh';
+    petal.style.transform='rotate('+(pct*360)+'deg)';
     if(pct<1){
       requestAnimationFrame(animate);
-    }else{
-      petal.remove();
-    }
+    }else petal.remove();
   }
   requestAnimationFrame(animate);
 }
 setInterval(createPetal,300);
 
-// Step 1: Birthday message
-const birthdayMsg = document.getElementById('birthdayMsg');
+// Birthday message
+const birthdayMsg=document.getElementById('birthdayMsg');
 setTimeout(()=>{
   birthdayMsg.style.display='block';
   setTimeout(()=>{
     birthdayMsg.style.display='none';
-    // Step 2: Show mini surprise button
     document.getElementById('miniSurpriseBtn').style.display='inline-block';
   },4000);
 },500);
 
-// Step 2: Mini Surprise Button
-const miniBtn = document.getElementById('miniSurpriseBtn');
-const cakeEmoji = document.getElementById('cakeEmoji');
+// Mini Surprise
+const miniBtn=document.getElementById('miniSurpriseBtn');
+const cakeContainer=document.getElementById('cakeContainer');
+const cakeEmoji=document.getElementById('cakeEmoji');
+const cakeOverlay=document.getElementById('cakeOverlay');
+
 miniBtn.addEventListener('click',()=>{
   miniBtn.style.display='none';
-  cakeEmoji.style.display='inline-block';
+  cakeContainer.style.display='block';
 });
 
-// Step 3: Cake cutting by dragging
-let cakeCut = false;
-let isDragging = false;
-cakeEmoji.addEventListener('mousedown',()=>isDragging=true);
-cakeEmoji.addEventListener('mouseup',()=>{
-  if(isDragging){
-    cakeCut=true;
-    cakeEmoji.style.opacity=0.3;
-    // Send 🫶🏻
-    alert('🫶🏻❤️Thanks for making me a part of your life ');
-    cakeEmoji.style.display='none';
-    // Show love letter
-    const loveLetter = document.getElementById('loveLetter');
-    loveLetter.innerHTML = `💌 Liza, tum meri duniya ka sabse soft aur sweet hissa ho. Har pal tumhare saath magic lagta hai.`;
-    loveLetter.style.display='block';
-    // Step 5: Show final text option
-    const finalText = document.getElementById('finalText');
-    const finalBtn = document.createElement('button');
-    finalBtn.innerText='Click for final message ❤️';
-    document.body.appendChild(finalBtn);
-    finalBtn.addEventListener('click',()=>{
-      loveLetter.style.display='none';
-      finalBtn.style.display='none';
-      finalText.innerText='Liza you are my everything 🫶🏻🍓❤️';
-      finalText.style.display='block';
-    });
-  }
-  isDragging=false;
-});
+// Cake cutting
+let cutting=false;
+let cutProgress=0;
 
-// For mobile touch support
-cakeEmoji.addEventListener('touchstart',()=>isDragging=true);
-cakeEmoji.addEventListener('touchend',()=>{
-  if(isDragging){
-    cakeCut=true;
-    cakeEmoji.style.opacity=0.3;
-    alert('🫶🏻 Love you, Liza!');
-    cakeEmoji.style.display='none';
-    const loveLetter = document.getElementById('loveLetter');
-    loveLetter.innerHTML = `💌 Liza, tum meri duniya ka sabse soft aur sweet hissa ho. Har pal tumhare saath magic lagta hai.`;
-    loveLetter.style.display='block';
-    const finalText = document.getElementById('finalText');
-    const finalBtn = document.createElement('button');
-    finalBtn.innerText='Click for final message ❤️';
-    document.body.appendChild(finalBtn);
-    finalBtn.addEventListener('click',()=>{
-      loveLetter.style.display='none';
-      finalBtn.style.display='none';
-      finalText.innerText='Liza 🫶🏻🍓❤️';
-      finalText.style.display='block';
-    });
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.className='heart';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.fontSize=(15+Math.random()*20)+'px';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),3000);
+}
+
+function cutCake(e){
+  if(cutting){
+    cutProgress+=5;
+    if(cutProgress>100) cutProgress=100;
+    cakeOverlay.style.width=cutProgress+'%';
+    // Hearts/confetti
+    createHeart();
+    if(cutProgress===100){
+      cakeContainer.style.opacity=0.5;
+      // Hinglish letter
+      const loveLetter=document.getElementById('loveLetter');
+      loveLetter.innerHTML = `💌 Liza, tum meri bestfriend ho! Har pal tumhare saath maza aata hai aur tum meri duniya ko bright banati ho.`;
+      loveLetter.style.display='block';
+      // 8 seconds timer for final
+      setTimeout(()=>{
+        loveLetter.style.display='none';
+        const finalText=document.getElementById('finalText');
+        finalText.innerText='Liza, Thanks for making me a part of your life 🫶🏻🍓❤️';
+        finalText.style.display='block';
+        // Friendship note
+        const friendNote=document.getElementById('friendNote');
+        friendNote.innerText=' Keep smiling 🫶🏻💖';
+        friendNote.style.display='block';
+      },8000);
+    }
   }
-  isDragging=false;
-});
+}
+
+cakeEmoji.addEventListener('mousedown',()=>cutting=true);
+cakeEmoji.addEventListener('mouseup',()=>cutting=false);
+cakeEmoji.addEventListener('mousemove',cutCake);
+
+cakeEmoji.addEventListener('touchstart',()=>cutting=true);
+cakeEmoji.addEventListener('touchend',()=>cutting=false);
+cakeEmoji.addEventListener('touchmove',cutCake);
+
 </script>
 </body>
 </html>
