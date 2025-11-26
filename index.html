@@ -3,271 +3,174 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For Liza — A Magical Surprise</title>
+<title>For Liza — Magical Surprise</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
 <style>
- body {
-   margin: 0;
-   padding: 0;
-   font-family: 'Poppins', sans-serif;
-   background: linear-gradient(135deg, #ffd6e8, #ffeaf3, #ffd1dc);
-   overflow-x: hidden;
- }
-
- /* Neon Header */
- .header {
-   text-align: center;
-   margin-top: 20px;
-   font-size: 42px;
-   font-family: 'Sacramento', cursive;
-   color: #ff007f;
-   text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff1a75;
-   animation: glow 2s infinite alternate;
- }
- @keyframes glow {
-   from { text-shadow: 0 0 8px #ff4da6; }
-   to { text-shadow: 0 0 18px #ff1a75; }
- }
-
- /* Roses Falling */
- .petal {
-   position: fixed;
-   top: -10px;
-   width: 22px;
-   height: 22px;
-   background-image: url('https://i.imgur.com/1JfZ1.png');
-   background-size: cover;
-   animation: fall linear infinite;
- }
- @keyframes fall {
-   0% { transform: translateY(-10vh) rotate(0deg); }
-   100% { transform: translateY(110vh) rotate(360deg); }
- }
-
- /* Slider */
- .slider {
-   display: flex;
-   gap: 25px;
-   overflow-x: auto;
-   padding: 20px;
-   scroll-behavior: smooth;
- }
- .card {
-   min-width: 260px;
-   background: rgba(255,255,255,0.55);
-   padding: 28px;
-   border-radius: 28px;
-   backdrop-filter: blur(14px);
-   box-shadow: 0 6px 25px rgba(0,0,0,0.18);
-   transition: 0.3s;
-   cursor:pointer;
- }
- .card:hover { transform: scale(1.08); }
- .icon { font-size: 70px; animation: float 2.6s infinite ease-in-out; }
- @keyframes float { 0%,100%{ transform:translateY(0);}50%{ transform:translateY(-12px);} }
- .label { font-size: 22px; font-weight: 600; color: #d00065; }
-
- /* Popup */
- .popup-bg {
-   position: fixed; top: 0; left: 0;
-   width: 100%; height: 100%;
-   background: rgba(0,0,0,0.5);
-   display: none; justify-content:center; align-items:center;
-   z-index: 1000;
- }
- .popup-box {
-   width: 85%; max-width: 380px;
-   background: white;
-   padding: 30px;
-   border-radius: 20px;
-   text-align: center;
-   animation: pop 0.6s ease;
- }
- @keyframes pop { from{transform:scale(0.5); opacity:0;} to{transform:scale(1); opacity:1;} }
-
- .close-btn {
-   background: #ff4d8d;
-   border: none;
-   padding: 12px 20px;
-   border-radius: 12px;
-   color: white;
-   font-weight: 600;
-   margin-top: 15px;
-   cursor:pointer;
- }
-
- /* Typing Animation */
- .typewriter {
-   font-size: 20px;
-   width: 0;
-   white-space: nowrap;
-   overflow: hidden;
-   border-right: 3px solid #ff2d7a;
-   animation: typing 4s steps(40) forwards, blink 0.8s infinite;
-   margin: auto;
-   text-align:center;
- }
- @keyframes typing { from { width: 0; } to { width: 100%; } }
- @keyframes blink { 50% { border-color: transparent; } }
-
- /* Fireflies */
- .fly {
-   position: fixed;
-   width: 8px; height: 8px;
-   background: rgba(255,255,255,0.9);
-   border-radius: 50%;
-   box-shadow: 0 0 8px white;
-   animation: flyAnim 6s infinite ease-in-out;
- }
- @keyframes flyAnim {
-   0% { transform: translate(0,0); }
-   50% { transform: translate(40px,-40px); }
-   100% { transform: translate(-20px,20px); }
- }
-
- /* Cake cut */
- #cake {
-   margin-top: 20px;
-   cursor:pointer;
-   transition: transform 0.3s;
- }
- #slice {
-   transition: width 0.3s;
- }
-
- /* Hearts animation */
- .heart-float {
-   position: fixed;
-   color:#ff4d8d;
-   font-size:20px;
-   animation: floatHeart 4s linear;
- }
- @keyframes floatHeart {
-   0% { transform: translateY(0); opacity:1;}
-   100% { transform: translateY(-200px); opacity:0;}
- }
+body{
+  margin:0; padding:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(135deg,#ffd6e8,#ffeaf3,#ffd1dc);
+  overflow:hidden;
+  text-align:center;
+}
+.header{
+  font-family:'Sacramento',cursive;
+  font-size:48px;
+  color:#ff007f;
+  margin-top:40px;
+  text-shadow:0 0 10px #ff4da6,0 0 20px #ff1a75;
+}
+.petals{
+  position:fixed;
+  width:25px;
+  height:25px;
+  pointer-events:none;
+  user-select:none;
+}
+#birthdayMsg{
+  font-size:30px;
+  font-weight:600;
+  margin-top:50px;
+  color:#d00065;
+  display:none;
+}
+button{
+  padding:15px 25px;
+  border:none;
+  border-radius:12px;
+  background:#ff4d8d;
+  color:white;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:20px;
+  display:none;
+}
+#cakeEmoji{
+  font-size:150px;
+  cursor:pointer;
+  display:none;
+  user-select:none;
+}
+#loveLetter, #finalText{
+  font-size:20px;
+  margin-top:20px;
+  color:#d00065;
+  display:none;
+}
 </style>
 </head>
 <body>
 
 <div class="header">For Liza 💖</div>
-
-<!-- Roses falling -->
-<script>
-for (let i=0; i<20; i++){
-  let p=document.createElement('div');
-  p.className='petal';
-  p.style.left=Math.random()*100+'vw';
-  p.style.animationDuration=(4+Math.random()*5)+'s';
-  document.body.appendChild(p);
-}
-</script>
-
-<!-- Fireflies -->
-<script>
-for(let i=0;i<10;i++){
-  let f=document.createElement('div');
-  f.className='fly';
-  f.style.left=Math.random()*100+'vw';
-  f.style.top=Math.random()*100+'vh';
-  document.body.appendChild(f);
-}
-</script>
-
-<!-- Typewriter message -->
-<div class="typewriter">You make everything softer, sweeter, and magical.</div>
-
-<!-- Slider -->
-<div class="slider">
-  <div class="card" onclick="openPopup('cake')">
-    <div class="icon">🎂</div>
-    <div class="label">Cake Slice</div>
-  </div>
-
-  <div class="card" onclick="openPopup('letter')">
-    <div class="icon">💌</div>
-    <div class="label">Love Letter</div>
-  </div>
-
-  <div class="card" onclick="openPopup('mini')">
-    <div class="icon">📜</div>
-    <div class="label">Mini Letters</div>
-  </div>
-</div>
-
-<!-- Popup -->
-<div class="popup-bg" id="popup-bg">
-  <div class="popup-box" id="popup-box"></div>
-</div>
+<div id="birthdayMsg">🎉 Happy Birthday Liza! 🎉</div>
+<button id="miniSurpriseBtn">Mini Surprise 🎁</button>
+<div id="cakeEmoji">🎂</div>
+<div id="loveLetter"></div>
+<div id="finalText"></div>
 
 <script>
-function openPopup(type){
-  let box=document.getElementById('popup-box');
-
-  if(type==='cake'){
-    // Simple cake interaction inside popup
-    box.innerHTML=`
-      <h2>🎂 Cake for Liza</h2>
-      <p>Click the "Cut Slice" button to cut the cake slice by slice!</p>
-      <div id="cake" style="
-        width:200px; height:200px;
-        background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
-        border-radius:50%; margin:auto; position:relative;">
-        <div id="slice" style="
-          width:0; height:100%; background:#fff5f5;
-          position:absolute; top:0; left:0; border-radius:0 100px 100px 0;">
-        </div>
-      </div>
-      <button onclick="cutCake()" class='close-btn'>Cut Slice</button>
-      <button onclick="closePopup()" class='close-btn' style="margin-left:10px;">Close</button>
-    `;
-    slices=0;
+// Sakura petals falling
+function createPetal(){
+  const petal = document.createElement('div');
+  petal.className='petals';
+  petal.innerText='🌸';
+  petal.style.left=Math.random()*100+'vw';
+  petal.style.top='-5vh';
+  petal.style.fontSize=(15+Math.random()*20)+'px';
+  petal.style.opacity=Math.random()*0.7+0.3;
+  document.body.appendChild(petal);
+  const duration = 4000 + Math.random()*4000;
+  let start = null;
+  function animate(timestamp){
+    if(!start) start=timestamp;
+    const progress=timestamp-start;
+    const pct=progress/duration;
+    petal.style.top = (-5 + pct*110)+'vh';
+    petal.style.transform = 'rotate('+ (pct*360) +'deg)';
+    if(pct<1){
+      requestAnimationFrame(animate);
+    }else{
+      petal.remove();
+    }
   }
-
-  if(type==='letter'){
-    box.innerHTML=`<h2>💌 Dear Liza</h2><p>You are one of the warmest, softest, most beautiful parts of my life.</p><button class='close-btn' onclick='closePopup()'>Close</button>`;
-  }
-
-  if(type==='mini'){
-    box.innerHTML=`<h2>📜 Mini Notes</h2><p>• You make the world prettier.<br>• Your smile is magic.<br>• You deserve softness.<br>• You matter to me.</p><button class='close-btn' onclick='closePopup()'>Close</button>`;
-  }
-
-  document.getElementById('popup-bg').style.display='flex';
+  requestAnimationFrame(animate);
 }
+setInterval(createPetal,300);
 
-function closePopup(){ document.getElementById('popup-bg').style.display='none'; }
+// Step 1: Birthday message
+const birthdayMsg = document.getElementById('birthdayMsg');
+setTimeout(()=>{
+  birthdayMsg.style.display='block';
+  setTimeout(()=>{
+    birthdayMsg.style.display='none';
+    // Step 2: Show mini surprise button
+    document.getElementById('miniSurpriseBtn').style.display='inline-block';
+  },4000);
+},500);
 
-let slices = 0;
-function cutCake() {
-  const sliceDiv = document.getElementById('slice');
-  slices++;
-  sliceDiv.style.width = (slices*20) + 'px'; // each click cuts 20px
-  if(slices>=10){
-    alert("🎉 Cake is fully cut! Happy moments for Liza! 💖");
-    createConfetti();
+// Step 2: Mini Surprise Button
+const miniBtn = document.getElementById('miniSurpriseBtn');
+const cakeEmoji = document.getElementById('cakeEmoji');
+miniBtn.addEventListener('click',()=>{
+  miniBtn.style.display='none';
+  cakeEmoji.style.display='inline-block';
+});
+
+// Step 3: Cake cutting by dragging
+let cakeCut = false;
+let isDragging = false;
+cakeEmoji.addEventListener('mousedown',()=>isDragging=true);
+cakeEmoji.addEventListener('mouseup',()=>{
+  if(isDragging){
+    cakeCut=true;
+    cakeEmoji.style.opacity=0.3;
+    // Send 🫶🏻
+    alert('🫶🏻 Love you, Liza!');
+    cakeEmoji.style.display='none';
+    // Show love letter
+    const loveLetter = document.getElementById('loveLetter');
+    loveLetter.innerHTML = `💌 Liza, tum meri duniya ka sabse soft aur sweet hissa ho. Har pal tumhare saath magic lagta hai.`;
+    loveLetter.style.display='block';
+    // Step 5: Show final text option
+    const finalText = document.getElementById('finalText');
+    const finalBtn = document.createElement('button');
+    finalBtn.innerText='Click for final message ❤️';
+    document.body.appendChild(finalBtn);
+    finalBtn.addEventListener('click',()=>{
+      loveLetter.style.display='none';
+      finalBtn.style.display='none';
+      finalText.innerText='Liza you are my everything 🫶🏻🍓❤️';
+      finalText.style.display='block';
+    });
   }
-}
+  isDragging=false;
+});
 
-// Hearts confetti after cake cut
-function createConfetti(){
-  for(let i=0;i<30;i++){
-    const heart = document.createElement('div');
-    heart.className='heart-float';
-    heart.style.left=Math.random()*100+'vw';
-    heart.style.fontSize=(15+Math.random()*20)+'px';
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),4000);
+// For mobile touch support
+cakeEmoji.addEventListener('touchstart',()=>isDragging=true);
+cakeEmoji.addEventListener('touchend',()=>{
+  if(isDragging){
+    cakeCut=true;
+    cakeEmoji.style.opacity=0.3;
+    alert('🫶🏻 Love you, Liza!');
+    cakeEmoji.style.display='none';
+    const loveLetter = document.getElementById('loveLetter');
+    loveLetter.innerHTML = `💌 Liza, tum meri duniya ka sabse soft aur sweet hissa ho. Har pal tumhare saath magic lagta hai.`;
+    loveLetter.style.display='block';
+    const finalText = document.getElementById('finalText');
+    const finalBtn = document.createElement('button');
+    finalBtn.innerText='Click for final message ❤️';
+    document.body.appendChild(finalBtn);
+    finalBtn.addEventListener('click',()=>{
+      loveLetter.style.display='none';
+      finalBtn.style.display='none';
+      finalText.innerText='Liza you are my everything 🫶🏻🍓❤️';
+      finalText.style.display='block';
+    });
   }
-}
+  isDragging=false;
+});
 </script>
-
-<!-- Auto music -->
-<audio id="bgm" autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-<script>
- document.addEventListener('click', ()=>{ document.getElementById('bgm').play(); }, {once:true});
-</script>
-
 </body>
 </html>
